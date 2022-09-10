@@ -8,6 +8,7 @@ const fs = require('fs')
 const utils = require('./utils')
 const { BigNumber } = require('@ethersproject/bignumber')
 dotenv.config()
+
 const PORT = process.env.PORT || 3001
 
 const canvasConfig = {
