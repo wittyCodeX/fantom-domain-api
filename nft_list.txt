@@ -1,0 +1,1 @@
+{"ipnft":"bafyreibbnxkyvc7flmyw7b7gzspmyttetbdprv5lcprcbcnyj5audfbjha","url":"ipfs://bafyreibbnxkyvc7flmyw7b7gzspmyttetbdprv5lcprcbcnyj5audfbjha/metadata.json"}
