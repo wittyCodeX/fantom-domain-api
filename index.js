@@ -5,7 +5,7 @@ const bodyParser = require('body-parser')
 const path = require('path')
 const fs = require('fs')
 
-const utils = require('./utils')
+const utils = require('./utils.js')
 const { BigNumber } = require('@ethersproject/bignumber')
 dotenv.config()
 
