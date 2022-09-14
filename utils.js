@@ -13,7 +13,7 @@ const paths = {
   images: './images',
   fonts: './fonts',
   database: './database.txt',
-  bgImage: './nft_bg.jpg',
+  bgImage: './nft_bg.png',
 }
 const customFonts = {
   postTitle: {
@@ -26,8 +26,11 @@ const customFonts = {
   },
 }
 const fonts = {
-  postTitle: 'regular 90px Kefa',
-  site: 'bold 30pt Menlo',
+  postTitlexl: 'bold 90px Kefa',
+  postTitlelg: 'bold 80px Kefa',
+  postTitlemd: 'bold 60px Kefa',
+  postTitlesm: 'bold 40px Kefa',
+  site: 'bold 20pt Kefa',
 }
 // Register custom fonts
 Object.keys(customFonts).forEach((font) => {
@@ -95,14 +98,25 @@ module.exports.generateNFT = async (new_params, canvasConfig) => {
   const textWidth = ctx.measureText(new_params.name).width
   loadImage(paths.bgImage).then(async (data) => {
     ctx.drawImage(data, 0, 0)
-    ctx.fillStyle = 'rgba(30, 144, 255, 0.4)'
-    ctx.fillRect(0, 0, 390, 390)
+    ctx.fillStyle = 'rgba(30, 144, 255, 0.1)'
+    ctx.fillRect(0, 0, 500, 500)
     ctx.fillStyle = 'white'
     ctx.textAlign = 'center'
     ctx.textBaseline = 'middle'
-    ctx.font = fonts.postTitle
-    let drawX = 200
-    let drawY = 200
+    console.log('length of name: ', new_params.name.length)
+    if (new_params.name.length < 6) {
+      ctx.font = fonts.postTitlexl
+    } else if (new_params.name.length >= 6 && new_params.name.length <= 10) {
+      ctx.font = fonts.postTitlelg
+    } else if (new_params.name.length > 10 && new_params.name.length < 14) {
+      ctx.font = fonts.postTitlemd
+    } else if (new_params.name.length >= 14 && new_params.name.length < 20) {
+      ctx.font = fonts.postTitlesm
+    } else {
+      ctx.font = fonts.site
+    }
+    let drawX = 250
+    let drawY = 350
     ctx.fillText(new_params.name, drawX, drawY)
     fs.writeFileSync(
       `${paths.images}/${new_params.tokenId.toString()}.png`,
@@ -112,6 +126,26 @@ module.exports.generateNFT = async (new_params, canvasConfig) => {
       `${paths.images}/${new_params.tokenId.toString()}.png`,
       new_params.tokenId.toString(),
       'FTMvy Domains is a naming service designed to support the Fantom ecosystem and its various subnets.',
+    )
+    fs.writeFile(
+      `./metadata/${new_params.tokenId.toString()}.json`,
+      JSON.stringify({
+        name: new_params.name,
+        description:
+          'FTMvy Domains is a naming service designed to support the Fantom ecosystem and its various subnets.',
+        image: `${
+          process.env.BACKEND_URL || 'https://fantom-domain-api.herokuapp.com'
+        }/images/${new_params.tokenId.toString()}.png`,
+      }),
+      {
+        flag: 'w',
+      },
+      function (err) {
+        if (err) {
+          return console.log(err)
+        }
+        console.log('The file was saved!')
+      },
     )
     fs.writeFile(
       './nft_list.txt',

@@ -12,8 +12,8 @@ dotenv.config()
 const PORT = process.env.PORT || 3001
 
 const canvasConfig = {
-  width: 390,
-  height: 390,
+  width: 500,
+  height: 500,
 }
 
 const app = express()
@@ -54,6 +54,19 @@ app.get('/', (req, res) => {
   res.status(200).json({
     message: databaseContent,
   })
+})
+
+//tell express that we want to use the www folder
+//for our static assets
+app.get('/api/metadata/:tokenId', (req, res) => {
+  // Read the database file and get all the lines in an array
+  const tokenId = req.params.tokenId
+  console.log('tokenId: ', tokenId)
+  const metadata = fs.readFileSync(`./metadata/${tokenId}.json`, {
+    encoding: 'utf8',
+    flag: 'r',
+  })
+  res.status(200).json(JSON.parse(metadata))
 })
 app.use(express.static(path.join(__dirname, '/')))
 
