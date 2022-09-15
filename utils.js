@@ -28,7 +28,7 @@ const customFonts = {
 const fonts = {
   postTitlexl: 'bold 110px Franklin Gothic Medium',
   postTitlelg: 'bold 90px Franklin Gothic Medium',
-  postTitlemd: 'bold 70px Franklin Gothic Medium',
+  postTitlemd: 'bold 60px Franklin Gothic Medium',
   postTitlesm: 'bold 50px Franklin Gothic Medium',
   site: 'bold 30pt Franklin Gothic Medium',
 }
@@ -111,17 +111,17 @@ module.exports.generateNFT = async (new_params, canvasConfig) => {
     ctx.textAlign = 'center'
     ctx.textBaseline = 'alphabetic'
     console.log('length of name: ', actualName.length)
-    if (actualName.length < 7) {
-      ctx.font = fonts.postTitlexl
-    } else if (actualName.length >= 7 && actualName.length <= 10) {
-      ctx.font = fonts.postTitlelg
-    } else if (actualName.length > 10 && actualName.length < 14) {
-      ctx.font = fonts.postTitlemd
-    } else if (actualName.length >= 14 && actualName.length < 20) {
-      ctx.font = fonts.postTitlesm
-    } else {
-      ctx.font = fonts.site
-    }
+    // if (actualName.length < 7) {
+    //   ctx.font = fonts.postTitlexl
+    // } else if (actualName.length >= 7 && actualName.length <= 10) {
+    //   ctx.font = fonts.postTitlelg
+    // } else if (actualName.length > 10 && actualName.length < 14) {
+    //   ctx.font = fonts.postTitlemd
+    // } else if (actualName.length >= 14 && actualName.length < 20) {
+    //   ctx.font = fonts.postTitlesm
+    // } else {
+    ctx.font = fonts.postTitlemd
+    // }
     let drawX = 250
     let drawY = 350
     let maxWidth = 450
