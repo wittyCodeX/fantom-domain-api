@@ -62,10 +62,13 @@ app.get('/api/metadata/:tokenId', (req, res) => {
   // Read the database file and get all the lines in an array
   const tokenId = req.params.tokenId
   console.log('tokenId: ', tokenId)
-  const metadata = fs.readFileSync(`./metadata/${tokenId}.json`, {
-    encoding: 'utf8',
-    flag: 'r',
-  })
+  const metadata = fs.readFileSync(
+    `${path.join(__dirname, '/metadata')}/${tokenId}.json`,
+    {
+      encoding: 'utf8',
+      flag: 'r',
+    },
+  )
   res.status(200).json(JSON.parse(metadata))
 })
 app.use(express.static(path.join(__dirname, '/')))
