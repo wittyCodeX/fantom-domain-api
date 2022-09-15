@@ -26,10 +26,10 @@ const customFonts = {
   },
 }
 const fonts = {
-  postTitlexl: 'bold 100px Franklin Gothic Medium',
-  postTitlelg: 'bold 80px Franklin Gothic Medium',
-  postTitlemd: 'bold 60px Franklin Gothic Medium',
-  postTitlesm: 'bold 40px Franklin Gothic Medium',
+  postTitlexl: 'bold 110px Franklin Gothic Medium',
+  postTitlelg: 'bold 90px Franklin Gothic Medium',
+  postTitlemd: 'bold 70px Franklin Gothic Medium',
+  postTitlesm: 'bold 50px Franklin Gothic Medium',
   site: 'bold 30pt Franklin Gothic Medium',
 }
 // Register custom fonts
@@ -93,9 +93,16 @@ module.exports.wrapText = (ctx, text, x, y, maxTextWidth, lineHeight) => {
 }
 
 module.exports.generateNFT = async (new_params, canvasConfig) => {
+  const names = new_params.name.split('.')
+  let actualName = ''
+  for (let i = 0; i < names.length - 1; i += 1) {
+    actualName += names[i]
+    if (i < names.length - 2) actualName += '.'
+  }
+  console.log('actualName', actualName)
   const imageCanvas = createCanvas(canvasConfig.width, canvasConfig.height)
   const ctx = imageCanvas.getContext('2d')
-  const textWidth = ctx.measureText(new_params.name).width
+  const textWidth = ctx.measureText(actualName).width
   loadImage(paths.bgImage).then(async (data) => {
     ctx.drawImage(data, 0, 0)
     ctx.fillStyle = 'rgba(30, 144, 255, 0.1)'
@@ -103,22 +110,22 @@ module.exports.generateNFT = async (new_params, canvasConfig) => {
     ctx.fillStyle = 'white'
     ctx.textAlign = 'center'
     ctx.textBaseline = 'alphabetic'
-    console.log('length of name: ', new_params.name.length)
-    if (new_params.name.length < 7) {
+    console.log('length of name: ', actualName.length)
+    if (actualName.length < 7) {
       ctx.font = fonts.postTitlexl
-    } else if (new_params.name.length >= 7 && new_params.name.length <= 10) {
+    } else if (actualName.length >= 7 && actualName.length <= 10) {
       ctx.font = fonts.postTitlelg
-    } else if (new_params.name.length > 10 && new_params.name.length < 14) {
+    } else if (actualName.length > 10 && actualName.length < 14) {
       ctx.font = fonts.postTitlemd
-    } else if (new_params.name.length >= 14 && new_params.name.length < 20) {
+    } else if (actualName.length >= 14 && actualName.length < 20) {
       ctx.font = fonts.postTitlesm
     } else {
       ctx.font = fonts.site
     }
     let drawX = 250
-    let drawY = 400
+    let drawY = 350
     let maxWidth = 450
-    ctx.fillText(new_params.name, drawX, drawY, maxWidth)
+    ctx.fillText(actualName, drawX, drawY, maxWidth)
     fs.writeFileSync(
       `${paths.images}/${new_params.tokenId.toString()}.png`,
       imageCanvas.toBuffer('image/png'),
