@@ -26,11 +26,11 @@ const customFonts = {
   },
 }
 const fonts = {
-  postTitlexl: 'bold 110px Kefa',
-  postTitlelg: 'bold 90px Kefa',
-  postTitlemd: 'bold 70px Kefa',
-  postTitlesm: 'bold 50px Kefa',
-  site: 'bold 30pt Kefa',
+  postTitlexl: 'bold 100px Franklin Gothic Medium',
+  postTitlelg: 'bold 80px Franklin Gothic Medium',
+  postTitlemd: 'bold 60px Franklin Gothic Medium',
+  postTitlesm: 'bold 40px Franklin Gothic Medium',
+  site: 'bold 30pt Franklin Gothic Medium',
 }
 // Register custom fonts
 Object.keys(customFonts).forEach((font) => {
@@ -102,7 +102,7 @@ module.exports.generateNFT = async (new_params, canvasConfig) => {
     ctx.fillRect(0, 0, 500, 500)
     ctx.fillStyle = 'white'
     ctx.textAlign = 'center'
-    ctx.textBaseline = 'middle'
+    ctx.textBaseline = 'alphabetic'
     console.log('length of name: ', new_params.name.length)
     if (new_params.name.length < 7) {
       ctx.font = fonts.postTitlexl
@@ -116,8 +116,9 @@ module.exports.generateNFT = async (new_params, canvasConfig) => {
       ctx.font = fonts.site
     }
     let drawX = 250
-    let drawY = 300
-    ctx.fillText(new_params.name, drawX, drawY)
+    let drawY = 400
+    let maxWidth = 450
+    ctx.fillText(new_params.name, drawX, drawY, maxWidth)
     fs.writeFileSync(
       `${paths.images}/${new_params.tokenId.toString()}.png`,
       imageCanvas.toBuffer('image/png'),
