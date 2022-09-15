@@ -28,7 +28,7 @@ const customFonts = {
 const fonts = {
   postTitlexl: 'bold 110px Kefa',
   postTitlelg: 'bold 90px Kefa',
-  postTitlemd: 'bold 7px Kefa',
+  postTitlemd: 'bold 70px Kefa',
   postTitlesm: 'bold 50px Kefa',
   site: 'bold 30pt Kefa',
 }
