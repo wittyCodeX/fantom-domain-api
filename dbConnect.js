@@ -1,4 +1,4 @@
-const sqlite3 = require("sqlite3").verbose();
+import sqlite3 from "sqlite3";
 
 const connectDB = () => {
   let db = new sqlite3.Database("./db/fns.db", err => {
@@ -28,8 +28,4 @@ const init = () => {
   );
   disconnectDB(db);
 };
-module.exports = {
-  connectDB,
-  disconnectDB,
-  init
-};
+export { connectDB, disconnectDB, init };

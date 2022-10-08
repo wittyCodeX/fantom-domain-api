@@ -1,13 +1,36 @@
-const express = require("express");
-const dotenv = require("dotenv");
-const cors = require("cors");
-const bodyParser = require("body-parser");
-const path = require("path");
-const { BigNumber } = require("@ethersproject/bignumber");
-const axios = require("axios");
-const { connectDB, init, disconnectDB } = require("./dbConnect");
-const utils = require("./utils.js");
+import express from "express";
+import dotenv from "dotenv";
+import cors from "cors";
+import bodyParser from "body-parser";
+import { BigNumber } from "@ethersproject/bignumber";
+import axios from "axios";
+import { connectDB, init, disconnectDB } from "./dbConnect.js";
+import * as utils from "./utils.js";
+// import fs from "fs";
+// import { ethers } from "ethers";
+
 dotenv.config();
+
+// const RPCS = {
+//   31337: {
+//     block: 0,
+//     url: "http://localhost:8545"
+//   },
+//   250: {
+//     block: 0,
+//     url: "https://rpc.ankr.com/fantom/"
+//   },
+//   4002: {
+//     block: 10385563,
+//     url: "https://rpc.testnet.fantom.network/"
+//   }
+// };
+
+// const CHAIN_ID = process.env.CHAIN_ID || 250;
+// const RPC = RPCS[CHAIN_ID];
+// const RPC_URL = process.env.RPC_URL || RPC.url;
+// const MAX_BLOCKS = 2048;
+// const NULL_ADDRESS = "0x0000000000000000000000000000000000000000";
 
 const PORT = process.env.PORT || 3001;
 
@@ -29,6 +52,16 @@ app.use(
 );
 app.use(bodyParser.json());
 
+//tell express that we want to use the www folder
+//for our static assets
+app.get("/", (req, res) => {
+  // Read the database file and get all the lines in an array
+
+  res.status(200).json({
+    message: "Server is running"
+  });
+});
+// Generate NFT and Store to NFT.Storage
 app.post("/generateNFT", async (req, res) => {
   const new_params = req.body;
   await utils.generateNFT(
@@ -44,16 +77,6 @@ app.post("/generateNFT", async (req, res) => {
     dbIndex: this.lastID
   });
 });
-//tell express that we want to use the www folder
-//for our static assets
-app.get("/", (req, res) => {
-  // Read the database file and get all the lines in an array
-
-  res.status(200).json({
-    message: "Server is running"
-  });
-});
-
 //tell express that we want to use the www folder
 //for our static assets
 app.get("/api/metadata/:tokenId", (req, res) => {
@@ -80,6 +103,42 @@ app.get("/api/metadata/:tokenId", (req, res) => {
   });
   disconnectDB(db);
 });
-app.use(express.static(path.join(__dirname, "/")));
 
 app.listen(PORT, () => console.log(`Server listening on port: ${PORT}`));
+
+// Recovery option
+
+// const regenerateNFT = async () => {
+//   const content = fs.readFileSync("./tokensids.txt").toString("UTF8");
+//   const tokenIDs = utils.getLines(content);
+
+//   const _FTMVY = await import("./clients/index.js");
+//   const FTMVY = _FTMVY.default;
+//   const provider = new ethers.providers.JsonRpcProvider(RPC_URL);
+
+//   const fns = new FTMVY(provider, {
+//     chainId: CHAIN_ID
+//   });
+//   let nameSignal;
+//   let domain;
+
+//   for (let i = 0; i < tokenIDs.length; i++) {
+//     if (tokenIDs[i]) {
+//       nameSignal = await fns.contracts.RainbowTableV1.lookup(
+//         BigNumber.from(tokenIDs[i].trim())
+//       );
+//       domain = await fns.utils.decodeNameHashInputSignals(nameSignal);
+//       console.log("token ID", tokenIDs[i].trim(), " at", i);
+//       console.log("domain", domain);
+//       await utils.generateNFT(
+//         {
+//           name: domain,
+//           tokenId: tokenIDs[i].trim()
+//         },
+//         canvasConfig
+//       );
+//     }
+//   }
+// };
+
+// regenerateNFT();
