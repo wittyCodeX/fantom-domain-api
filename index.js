@@ -74,7 +74,7 @@ app.post("/generateNFT", async (req, res) => {
   // get the last insert id
   res.status(200).json({
     message: "succeed",
-    dbIndex: this.lastID
+    name: new_params.name
   });
 });
 //tell express that we want to use the www folder
