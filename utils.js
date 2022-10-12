@@ -118,7 +118,7 @@ export const generateNFT = async (new_params, canvasConfig) => {
       name: new_params.name,
       tokenId: new_params.tokenId.toString(),
       description:
-        "FTMvy Domains is a naming service designed to support the Fantom ecosystem and its various subnets.",
+        "FNS is a naming service designed to support the Fantom ecosystem and its various subnets.",
       image: new File(
         [imageCanvas.toBuffer("image/png")],
         `${new_params.tokenId.toString()}.png`,
