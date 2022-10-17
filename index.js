@@ -35,8 +35,8 @@ dotenv.config();
 const PORT = process.env.PORT || 3001;
 
 const canvasConfig = {
-  width: 5000,
-  height: 5000
+  width: 2500,
+  height: 2500
 };
 
 init();
