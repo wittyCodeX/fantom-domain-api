@@ -118,13 +118,13 @@ export const generateNFT = async (new_params, canvasConfig) => {
       name: new_params.name,
       tokenId: new_params.tokenId.toString(),
       description:
-        "FNS is a naming service designed to support the Fantom ecosystem and its various subnets.",
+        "WENS is a naming service designed to support the Ethereum ecosystem and its various subnets.",
       image: new File(
         [imageCanvas.toBuffer("image/png")],
         `${new_params.tokenId.toString()}.png`,
         { type: "image/png" }
       ),
-      external_url: "https://scr-fns-6pa8.vercel.app/"
+      external_url: ""
     });
 
     console.log("IPFS URL for the metadata:", getIPFSGatewayURL(metadata.url));
