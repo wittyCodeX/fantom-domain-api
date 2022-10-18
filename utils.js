@@ -29,11 +29,11 @@ const customFonts = {
   }
 };
 const fonts = {
-  postTitlexl: "bold 800px Franklin Gothic Medium",
-  postTitlelg: "bold 700px Franklin Gothic Medium",
-  postTitlemd: "bold 600px Franklin Gothic Medium",
-  postTitlesm: "bold 500px Franklin Gothic Medium",
-  site: "bold 300pt Franklin Gothic Medium"
+  postTitlexl: "bold 400px Franklin Gothic Medium",
+  postTitlelg: "bold 350px Franklin Gothic Medium",
+  postTitlemd: "bold 300px Franklin Gothic Medium",
+  postTitlesm: "bold 250px Franklin Gothic Medium",
+  site: "bold 150pt Franklin Gothic Medium"
 };
 // Register custom fonts
 Object.keys(customFonts).forEach(font => {
