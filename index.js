@@ -20,13 +20,17 @@ dotenv.config();
 //     block: 0,
 //     url: "https://rpc.ankr.com/fantom/"
 //   },
+//   5: {
+//     block: 0,
+//     url: "https://goerli.infura.io/v3/43a5d6ed07a140288e17955ddde82ae1"
+//   },
 //   4002: {
 //     block: 10385563,
 //     url: "https://rpc.testnet.fantom.network/"
 //   }
 // };
 
-// const CHAIN_ID = process.env.CHAIN_ID || 250;
+// const CHAIN_ID = process.env.CHAIN_ID || 5;
 // const RPC = RPCS[CHAIN_ID];
 // const RPC_URL = process.env.RPC_URL || RPC.url;
 // const MAX_BLOCKS = 2048;
@@ -62,12 +66,13 @@ app.get("/", (req, res) => {
   });
 });
 // Generate NFT and Store to NFT.Storage
-app.post("/generateNFT", async (req, res) => {
+app.post("/api/generateNFT", async (req, res) => {
   const new_params = req.body;
   await utils.generateNFT(
     {
       name: new_params.name,
-      tokenId: BigNumber.from(new_params.tokenId).toString()
+      tokenId: BigNumber.from(new_params.tokenId).toString(),
+      address: new_params.address
     },
     canvasConfig
   );
@@ -77,6 +82,35 @@ app.post("/generateNFT", async (req, res) => {
     name: new_params.name
   });
 });
+
+//for our static assets
+app.get("/api/getRecentNFTs", (req, res) => {
+  // Read the database file and get all the lines in an array
+
+  let sql = `SELECT *
+  FROM metadata
+           WHERE 1 ORDER BY registered_at DESC limit 5`;
+  const db = connectDB();
+
+  // first row only
+  db.all(sql, (err, rows) => {
+    if (err) {
+      console.log(`cannot get metadata`);
+    }
+    console.log(rows);
+    if (rows) {
+      res
+        .status(200)
+        .json({ message: "GET NFT LIST", status: true, nfts: rows });
+    } else {
+      res
+        .status(200)
+        .json({ message: "NON EXIST TOKEN", status: false, nfts: {} });
+    }
+  });
+  disconnectDB(db);
+});
+
 //tell express that we want to use the www folder
 //for our static assets
 app.get("/api/metadata/:tokenId", (req, res) => {
@@ -133,7 +167,8 @@ app.listen(PORT, () => console.log(`Server listening on port: ${PORT}`));
 //       await utils.generateNFT(
 //         {
 //           name: domain,
-//           tokenId: tokenIDs[i].trim()
+//           tokenId: tokenIDs[i].trim(),
+//           address: "0x600bE5FcB9338BC3938e4790EFBeAaa4F77D6893"
 //         },
 //         canvasConfig
 //       );
@@ -142,3 +177,4 @@ app.listen(PORT, () => console.log(`Server listening on port: ${PORT}`));
 // };
 
 // regenerateNFT();
+//

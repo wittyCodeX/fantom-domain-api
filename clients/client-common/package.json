@@ -1,7 +1,7 @@
 {
   "name": "client-common",
   "version": "1.0.0",
-  "description": "This project contains static files required by FNS clients.",
+  "description": "This project contains static files required by WENS clients.",
   "main": "index.js",
   "directories": {
     "test": "test"
@@ -11,14 +11,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/fnsdomains/client-common.git"
+    "url": "git+https://github.com/wensdomains/client-common.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/fnsdomains/client-common/issues"
+    "url": "https://github.com/wensdomains/client-common/issues"
   },
-  "homepage": "https://github.com/fnsdomains/client-common#readme",
+  "homepage": "https://github.com/wensdomains/client-common#readme",
   "devDependencies": {
     "assert": "^2.0.0",
     "chai": "^4.3.6",

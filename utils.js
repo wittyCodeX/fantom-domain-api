@@ -129,14 +129,20 @@ export const generateNFT = async (new_params, canvasConfig) => {
 
     console.log("IPFS URL for the metadata:", getIPFSGatewayURL(metadata.url));
 
-    let sql = `INSERT INTO metadata (tokenId, url)
-    VALUES (?, ?)`;
+    let sql = `INSERT INTO metadata (tokenId, domain,  url, address, registered_at)
+    VALUES (?, ?, ?, ?, ?)`;
 
     const db = connectDB();
     // insert one row into the langs table
     db.run(
       sql,
-      [new_params.tokenId.toString(), getIPFSGatewayURL(metadata.url)],
+      [
+        new_params.tokenId.toString(),
+        new_params.name,
+        getIPFSGatewayURL(metadata.url),
+        new_params.address,
+        new Date().toString("YYYY-mm-dd HH:ii:ss")
+      ],
       function(err) {
         if (err) {
           return console.log(err.message);

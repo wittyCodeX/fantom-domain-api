@@ -18,7 +18,7 @@ const disconnectDB = db => {
 const init = () => {
   const db = connectDB();
   db.run(
-    `CREATE TABLE IF NOT EXISTS metadata (tokenId TEXT PRIMARY KEY, url TEXT)`,
+    `CREATE TABLE IF NOT EXISTS metadata (tokenId TEXT PRIMARY KEY, domain TEXT, url TEXT, address TEXT, registered_at DATETIME)`,
     err => {
       if (err) {
         console.error(err.message);
