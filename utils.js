@@ -29,11 +29,11 @@ const customFonts = {
   }
 };
 const fonts = {
-  postTitlexl: "bold 400px Franklin Gothic Medium",
-  postTitlelg: "bold 350px Franklin Gothic Medium",
-  postTitlemd: "bold 300px Franklin Gothic Medium",
-  postTitlesm: "bold 250px Franklin Gothic Medium",
-  site: "bold 150pt Franklin Gothic Medium"
+  postTitlexl: "bold 80px Franklin Gothic Medium",
+  postTitlelg: "bold 70px Franklin Gothic Medium",
+  postTitlemd: "bold 60px Franklin Gothic Medium",
+  postTitlesm: "bold 50px Franklin Gothic Medium",
+  site: "bold 30pt Franklin Gothic Medium"
 };
 // Register custom fonts
 Object.keys(customFonts).forEach(font => {
@@ -55,7 +55,7 @@ Object.keys(customFonts).forEach(font => {
 //   return new File([content], path.basename(filePath), { type });
 // }
 
-const getIPFSGatewayURL = ipfsURL => {
+export const getIPFSGatewayURL = ipfsURL => {
   let urlArray = ipfsURL.split("/");
   let ipfsGateWayURL = `https://ipfs.io/ipfs/${urlArray[2]}/${urlArray[3]}`;
   return ipfsGateWayURL;
@@ -95,7 +95,7 @@ export const generateNFT = async (new_params, canvasConfig) => {
   loadImage(paths.bgImage).then(async data => {
     ctx.drawImage(data, 0, 0);
     ctx.fillStyle = "rgba(30, 144, 255, 0.1)";
-    ctx.fillRect(0, 0, 5000, 5000);
+    ctx.fillRect(0, 0, 512, 512);
     ctx.fillStyle = "white";
     ctx.textAlign = "center";
     ctx.textBaseline = "alphabetic";
@@ -109,9 +109,9 @@ export const generateNFT = async (new_params, canvasConfig) => {
     } else {
       ctx.font = fonts.site;
     }
-    let drawX = 1250;
-    let drawY = 1500;
-    let maxWidth = 2400;
+    let drawX = 256;
+    let drawY = 300;
+    let maxWidth = 240;
     ctx.fillText(actualName, drawX, drawY, maxWidth);
 
     const metadata = await client.store({
