@@ -111,7 +111,7 @@ export const generateNFT = async (new_params, canvasConfig) => {
     }
     let drawX = 256;
     let drawY = 300;
-    let maxWidth = 240;
+    let maxWidth = 500;
     ctx.fillText(actualName, drawX, drawY, maxWidth);
 
     const metadata = await client.store({

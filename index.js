@@ -175,7 +175,7 @@ app.listen(PORT, () => console.log(`Server listening on port: ${PORT}`));
 //         {
 //           name: domain,
 //           tokenId: tokenIDs[i].trim(),
-//           address: "0xe6e2c266543ee7a01de3a61e8517b1a164a041ef"
+//           address: "0x600bE5FcB9338BC3938e4790EFBeAaa4F77D6893"
 //         },
 //         canvasConfig
 //       );
