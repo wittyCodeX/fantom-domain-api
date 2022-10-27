@@ -6,35 +6,35 @@ import { BigNumber } from "@ethersproject/bignumber";
 import axios from "axios";
 import { connectDB, init, disconnectDB } from "./dbConnect.js";
 import * as utils from "./utils.js";
-import fs from "fs";
-import { ethers } from "ethers";
+// import fs from "fs";
+// import { ethers } from "ethers";
 
 dotenv.config();
 
-const RPCS = {
-  31337: {
-    block: 0,
-    url: "http://localhost:8545"
-  },
-  250: {
-    block: 0,
-    url: "https://rpc.ankr.com/fantom/"
-  },
-  5: {
-    block: 0,
-    url: "https://goerli.infura.io/v3/43a5d6ed07a140288e17955ddde82ae1"
-  },
-  4002: {
-    block: 10385563,
-    url: "https://rpc.testnet.fantom.network/"
-  }
-};
+// const RPCS = {
+//   31337: {
+//     block: 0,
+//     url: "http://localhost:8545"
+//   },
+//   250: {
+//     block: 0,
+//     url: "https://rpc.ankr.com/fantom/"
+//   },
+//   5: {
+//     block: 0,
+//     url: "https://goerli.infura.io/v3/43a5d6ed07a140288e17955ddde82ae1"
+//   },
+//   4002: {
+//     block: 10385563,
+//     url: "https://rpc.testnet.fantom.network/"
+//   }
+// };
 
-const CHAIN_ID = process.env.CHAIN_ID || 5;
-const RPC = RPCS[CHAIN_ID];
-const RPC_URL = process.env.RPC_URL || RPC.url;
-const MAX_BLOCKS = 2048;
-const NULL_ADDRESS = "0x0000000000000000000000000000000000000000";
+// const CHAIN_ID = process.env.CHAIN_ID || 5;
+// const RPC = RPCS[CHAIN_ID];
+// const RPC_URL = process.env.RPC_URL || RPC.url;
+// const MAX_BLOCKS = 2048;
+// const NULL_ADDRESS = "0x0000000000000000000000000000000000000000";
 
 const PORT = process.env.PORT || 3001;
 
@@ -149,38 +149,38 @@ app.listen(PORT, () => console.log(`Server listening on port: ${PORT}`));
 
 // Recovery option
 
-const regenerateNFT = async () => {
-  const content = fs.readFileSync("./tokensids.txt").toString("UTF8");
-  const tokenIDs = utils.getLines(content);
+// const regenerateNFT = async () => {
+//   const content = fs.readFileSync("./tokensids.txt").toString("UTF8");
+//   const tokenIDs = utils.getLines(content);
 
-  const _FTMVY = await import("./clients/index.js");
-  const FTMVY = _FTMVY.default;
-  const provider = new ethers.providers.JsonRpcProvider(RPC_URL);
+//   const _FTMVY = await import("./clients/index.js");
+//   const FTMVY = _FTMVY.default;
+//   const provider = new ethers.providers.JsonRpcProvider(RPC_URL);
 
-  const fns = new FTMVY(provider, {
-    chainId: CHAIN_ID
-  });
-  let nameSignal;
-  let domain;
+//   const fns = new FTMVY(provider, {
+//     chainId: CHAIN_ID
+//   });
+//   let nameSignal;
+//   let domain;
 
-  for (let i = 0; i < tokenIDs.length; i++) {
-    if (tokenIDs[i]) {
-      nameSignal = await fns.contracts.RainbowTableV1.lookup(
-        BigNumber.from(tokenIDs[i].trim())
-      );
-      domain = await fns.utils.decodeNameHashInputSignals(nameSignal);
-      console.log("token ID", tokenIDs[i].trim(), " at", i);
-      console.log("domain", domain);
-      await utils.generateNFT(
-        {
-          name: domain,
-          tokenId: tokenIDs[i].trim(),
-          address: "0xe6e2c266543ee7a01de3a61e8517b1a164a041ef"
-        },
-        canvasConfig
-      );
-    }
-  }
-};
+//   for (let i = 0; i < tokenIDs.length; i++) {
+//     if (tokenIDs[i]) {
+//       nameSignal = await fns.contracts.RainbowTableV1.lookup(
+//         BigNumber.from(tokenIDs[i].trim())
+//       );
+//       domain = await fns.utils.decodeNameHashInputSignals(nameSignal);
+//       console.log("token ID", tokenIDs[i].trim(), " at", i);
+//       console.log("domain", domain);
+//       await utils.generateNFT(
+//         {
+//           name: domain,
+//           tokenId: tokenIDs[i].trim(),
+//           address: "0xe6e2c266543ee7a01de3a61e8517b1a164a041ef"
+//         },
+//         canvasConfig
+//       );
+//     }
+//   }
+// };
 
-regenerateNFT();
+// regenerateNFT();
