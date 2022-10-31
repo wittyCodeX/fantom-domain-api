@@ -3,7 +3,7 @@ export default {
   chainId: "4",
   contracts: {
     Domain: {
-      address: "0x82e951ca5307E178da5613F3D0c22D6899E58c9B",
+      address: "0x043b995E80564a98613C8F2cA3c6dD85355f781D",
       abi: [
         {
           inputs: [
@@ -476,8 +476,7 @@ export default {
           inputs: [
             { internalType: "address", name: "registrant", type: "address" },
             { internalType: "uint256", name: "namespaceId", type: "uint256" },
-            { internalType: "uint256", name: "_name", type: "uint256" },
-            { internalType: "bytes", name: "constraintsData", type: "bytes" }
+            { internalType: "uint256", name: "_name", type: "uint256" }
           ],
           name: "register",
           outputs: [],
@@ -733,7 +732,7 @@ export default {
       ]
     },
     LeasingAgent: {
-      address: "0x42cB3070F82CAc2Deba3F374C87DC40C49C35f84",
+      address: "0xc591f840031F21007de51711c893297Ba8378fD5",
       abi: [
         {
           inputs: [
@@ -984,17 +983,8 @@ export default {
         {
           inputs: [
             { internalType: "uint256[]", name: "names", type: "uint256[]" },
-            {
-              internalType: "uint256[]",
-              name: "quantities",
-              type: "uint256[]"
-            },
-            {
-              internalType: "bytes[]",
-              name: "constraintsProofs",
-              type: "bytes[]"
-            },
-            { internalType: "bytes[]", name: "pricingProofs", type: "bytes[]" }
+            { internalType: "uint256[]", name: "lengths", type: "uint256[]" },
+            { internalType: "uint256[]", name: "quantities", type: "uint256[]" }
           ],
           name: "register",
           outputs: [],
@@ -1009,12 +999,7 @@ export default {
               name: "quantities",
               type: "uint256[]"
             },
-            {
-              internalType: "bytes[]",
-              name: "constraintsProofs",
-              type: "bytes[]"
-            },
-            { internalType: "bytes[]", name: "pricingProofs", type: "bytes[]" },
+            { internalType: "uint256[]", name: "lengths", type: "uint256[]" },
             { internalType: "uint256[]", name: "preimages", type: "uint256[]" }
           ],
           name: "registerWithPreimage",
