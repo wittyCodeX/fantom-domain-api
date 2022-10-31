@@ -1,36 +1,36 @@
-import { ethers } from 'ethers'
+import { ethers } from "ethers";
 
-import _contracts from './lib/contracts/index.js'
+import _contracts from "./lib/contracts/index.js";
 
 const ethersLoader = (signerOrProvider, chainId) => {
-  if (!_contracts[chainId]) throw `Contracts not found for chainId ${chainId}`
-  const contractData = _contracts[chainId]
-  const contracts = {}
+  if (!_contracts[chainId]) throw `Contracts not found for chainId ${chainId}`;
+  const contractData = _contracts[chainId];
+  const contracts = {};
   for (let key in contractData.contracts) {
     contracts[key] = new ethers.Contract(
       contractData.contracts[key].address,
       contractData.contracts[key].abi,
-      signerOrProvider,
-    )
+      signerOrProvider
+    );
   }
 
   return {
     getContracts: () => {
-      return contracts
+      return contracts;
     },
 
-    getResolverContract: (address) => {
-      const iface = contracts.PublicResolverV1.interface
-      return new ethers.Contract(address, iface, signerOrProvider)
+    getResolverContract: address => {
+      const iface = contracts.PublicResolver.interface;
+      return new ethers.Contract(address, iface, signerOrProvider);
     },
 
-    getEVMReverseResolverContract: (address) => {
-      const iface = contracts.EVMReverseResolverV1.interface
-      return new ethers.Contract(address, iface, signerOrProvider)
-    },
-  }
-}
+    getEVMReverseResolverContract: address => {
+      const iface = contracts.EVMReverseResolver.interface;
+      return new ethers.Contract(address, iface, signerOrProvider);
+    }
+  };
+};
 
 export default {
-  ethersLoader,
-}
+  ethersLoader
+};

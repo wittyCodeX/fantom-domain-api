@@ -14,11 +14,11 @@ const ethersProvider = function(provider, chainId) {
       return parseInt(expiry.toString());
     },
     lookupHash: async hash => {
-      const result = await contracts.RainbowTableV1.lookup(hash);
+      const result = await contracts.RainbowTable.lookup(hash);
       return result;
     },
     getResolver: async (domain, hash) => {
-      const resolver = await contracts.ResolverRegistryV1.get(domain, hash);
+      const resolver = await contracts.ResolverRegistry.get(domain, hash);
       return resolver;
     },
     resolveStandard: async (resolverAddress, datasetId, hash, key) => {
@@ -40,14 +40,12 @@ const ethersProvider = function(provider, chainId) {
       return result;
     },
     reverseResolveEVM: async (key, value) => {
-      const address = await contracts.ReverseResolverRegistryV1.getResolver(
-        key
-      );
+      const address = await contracts.ReverseResolverRegistry.getResolver(key);
       const contract = contractLoader.getEVMReverseResolverContract(address);
       return await contract.get(value);
     },
     getReverseResolverAddress: async key => {
-      return await contracts.ReverseResolverRegistryV1.getResolver(key);
+      return await contracts.ReverseResolverRegistry.getResolver(key);
     }
   };
 };

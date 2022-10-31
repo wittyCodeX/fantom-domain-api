@@ -111,6 +111,28 @@ app.get("/api/getRecentNFTs", (req, res) => {
   disconnectDB(db);
 });
 
+//for our static assets
+app.get("/api/getDomainsByOwner/:account", (req, res) => {
+  // Read the database file and get all the lines in an array
+  const account = req.params.account;
+  let sql = `SELECT *
+  FROM metadata
+           WHERE address  = ?`;
+  const db = connectDB();
+
+  // first row only
+  db.all(sql, [account], (err, rows) => {
+    if (err) {
+      console.log(`cannot get metadata for account: ${account}`);
+    }
+    if (rows) {
+      res.send(rows);
+    } else {
+      res.send({});
+    }
+  });
+  disconnectDB(db);
+});
 //tell express that we want to use the www folder
 //for our static assets
 app.get("/api/token/:tokenId", (req, res) => {
@@ -165,7 +187,7 @@ app.listen(PORT, () => console.log(`Server listening on port: ${PORT}`));
 
 //   for (let i = 0; i < tokenIDs.length; i++) {
 //     if (tokenIDs[i]) {
-//       nameSignal = await fns.contracts.RainbowTableV1.lookup(
+//       nameSignal = await fns.contracts.RainbowTable.lookup(
 //         BigNumber.from(tokenIDs[i].trim())
 //       );
 //       domain = await fns.utils.decodeNameHashInputSignals(nameSignal);

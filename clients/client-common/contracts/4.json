@@ -951,7 +951,7 @@
         }
       ]
     },
-    "EVMReverseResolverV1": {
+    "EVMReverseResolver": {
       "address": "0xF2Fa2Ab016f11D32Ac89B184C090ee5ff000973A",
       "abi": [{
           "inputs": [{
@@ -1075,7 +1075,7 @@
         }
       ]
     },
-    "LeasingAgentV1": {
+    "LeasingAgent": {
       "address": "0xB4c8B5afe02bf1fc66CF3eE005A735Ad327d4Be0",
       "abi": [{
         "inputs": [{
@@ -1529,7 +1529,7 @@
         "type": "function"
       }]
     },
-    "PublicResolverV1": {
+    "PublicResolver": {
       "address": "0xaA9bCc8515e5D76EBd30769295330E26724a5a54",
       "abi": [{
           "inputs": [{
@@ -1720,7 +1720,7 @@
         }
       ]
     },
-    "RainbowTableV1": {
+    "RainbowTable": {
       "address": "0x0Cf72077e3632528B5a792BD378Fa47d1061A187",
       "abi": [{
           "inputs": [{
@@ -1823,7 +1823,7 @@
         }
       ]
     },
-    "ResolverRegistryV1": {
+    "ResolverRegistry": {
       "address": "0xe6EA8Cc5b35e28E669264c967b4d4Ef524B27B06",
       "abi": [{
           "inputs": [{
@@ -1926,7 +1926,7 @@
         }
       ]
     },
-    "ReverseResolverRegistryV1": {
+    "ReverseResolverRegistry": {
       "address": "0xb1182f674FeB8FaF43D91B48F4172D6b765e5539",
       "abi": [{
           "inputs": [{

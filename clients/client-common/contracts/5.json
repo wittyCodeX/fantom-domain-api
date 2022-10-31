@@ -857,7 +857,7 @@
          }
        ]
      },
-     EVMReverseResolverV1: {
+     EVMReverseResolver: {
        address: "0x68c02CAa5424B58030ad71422D1576457B0AC7D5",
        abi: [{
            inputs: [{
@@ -981,7 +981,7 @@
          }
        ]
      },
-     LeasingAgentV1: {
+     LeasingAgent: {
        address: "0x198b44E89dc078388A5a9044645F464E0F2e4Da4",
        abi: [{
            inputs: [{
@@ -1512,7 +1512,7 @@
          }
        ]
      },
-     PublicResolverV1: {
+     PublicResolver: {
        address: "0xEd44Bc1D2F56f7c37D3Fffe600264d021d324cA1",
        abi: [{
            inputs: [{
@@ -1703,7 +1703,7 @@
          }
        ]
      },
-     RainbowTableV1: {
+     RainbowTable: {
        address: "0xe76a8a7e39f354d581054e522886275Df313188d",
        abi: [{
            inputs: [{
@@ -1806,7 +1806,7 @@
          }
        ]
      },
-     ResolverRegistryV1: {
+     ResolverRegistry: {
        address: "0x8142f0890D78D7Cdb413316CbbbFBD3676CA91F4",
        abi: [{
            inputs: [{
@@ -1909,7 +1909,7 @@
          }
        ]
      },
-     ReverseResolverRegistryV1: {
+     ReverseResolverRegistry: {
        address: "0xde681592Fe8f9E3Ae51674040321d58F8b3feB2f",
        abi: [{
            inputs: [{
