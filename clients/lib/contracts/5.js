@@ -3,7 +3,7 @@ export default {
   chainId: "4",
   contracts: {
     Domain: {
-      address: "0xe2f2a4040c0Ca49e5420Be7793183A7914bbA618",
+      address: "0x82e951ca5307E178da5613F3D0c22D6899E58c9B",
       abi: [
         {
           inputs: [
@@ -601,6 +601,15 @@ export default {
           type: "function"
         },
         {
+          inputs: [
+            { internalType: "uint256", name: "_tokenId", type: "uint256" }
+          ],
+          name: "tokenURI",
+          outputs: [{ internalType: "string", name: "", type: "string" }],
+          stateMutability: "view",
+          type: "function"
+        },
+        {
           inputs: [],
           name: "totalSupply",
           outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
@@ -617,9 +626,7 @@ export default {
           type: "function"
         },
         {
-          inputs: [
-            { internalType: "uint256", name: "tokenId", type: "uint256" }
-          ],
+          inputs: [{ internalType: "uint256", name: "", type: "uint256" }],
           name: "uri",
           outputs: [{ internalType: "string", name: "", type: "string" }],
           stateMutability: "view",
