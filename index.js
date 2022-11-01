@@ -39,8 +39,8 @@ dotenv.config();
 const PORT = process.env.PORT || 3001;
 
 const canvasConfig = {
-  width: 512,
-  height: 512
+  width: 2500,
+  height: 2500
 };
 
 init();
@@ -197,7 +197,7 @@ app.listen(PORT, () => console.log(`Server listening on port: ${PORT}`));
 //         {
 //           name: domain,
 //           tokenId: tokenIDs[i].trim(),
-//           address: "0x600bE5FcB9338BC3938e4790EFBeAaa4F77D6893"
+//           address: "0xe6e2c266543ee7a01de3a61e8517b1a164a041ef"
 //         },
 //         canvasConfig
 //       );
