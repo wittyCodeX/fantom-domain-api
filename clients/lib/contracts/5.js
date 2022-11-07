@@ -3,7 +3,7 @@ export default {
   chainId: "4",
   contracts: {
     Domain: {
-      address: "0x043b995E80564a98613C8F2cA3c6dD85355f781D",
+      address: "0x445ff985D9f899d4c6173F6a2dCF23ba49DB047B",
       abi: [
         {
           inputs: [
